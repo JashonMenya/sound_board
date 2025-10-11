@@ -2,6 +2,9 @@ const grid = document.getElementById("grid");
 const search = document.getElementById("search");
 const stopAllBtn = document.getElementById("stopAll");
 const volume = document.getElementById("volume");
+let currentVolume = Number(volume.value);
+const volValue = document.getElementById("volValue");
+
 
 let sounds = [];
 const players = new Map(); // file -> { audio, button }
@@ -53,7 +56,8 @@ function render(list) {
 
     const audio = new Audio(file);
     audio.preload = "auto";
-    audio.volume = Number(volume.value);
+    audio.volume = currentVolume;
+
 
     // keep UI in sync
     audio.addEventListener("ended", () => {
@@ -102,8 +106,10 @@ search.addEventListener("input", () => {
 stopAllBtn.addEventListener("click", stopAll);
 
 volume.addEventListener("input", () => {
-  const v = Number(volume.value);
-  players.forEach(({ audio }) => (audio.volume = v));
+  currentVolume = Number(volume.value);
+  volValue.textContent = Math.round(currentVolume * 100) + "%";
+  players.forEach(({ audio }) => (audio.volume = currentVolume));
 });
+
 
 loadSounds();
