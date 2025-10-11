@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Sound Board</title>
+  <link rel="stylesheet" href="./index.css" />
+</head>
+<body>
+  <header>
+    <h1>JJ’s Sound Board</h1>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Filter sounds…" />
+      <button id="stopAll" title="Stop all">⏹ Stop</button>
+      <label class="vol">
+        Volume
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.5" />
+      </label>
+    </div>
+  </header>
+
+  <main id="grid" class="grid" aria-live="polite"></main>
+
+  <footer>
+    <small>Drop new files in <code>audio_files/</code> and refresh.</small>
+  </footer>
+
+  <script src="./index.js" type="module"></script>
+</body>
+</html>
